@@ -29,7 +29,9 @@
 				name: 'Income',
 				innerSize: '50%',
 				data: [
+
 					{ name: 'This Week ', y: Math.abs(parseInt(jQuery("#thisWeek").text())), color: '#60b000' },
+
 					{ name: 'Last Week ', y: Math.abs(parseInt(jQuery("#LastWeek").text())), color: '#007137' }
 				],
 				dataLabels: {
