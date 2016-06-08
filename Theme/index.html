@@ -29,7 +29,7 @@
         </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+
               <li><a href="#">test1</a>
               <li><a href="#">test2</a>
               <li><a href="#">test3</a>
@@ -65,21 +65,21 @@
       <!-- Win/Loss Figure -->
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
-		  		<dtitle>Win/Loss Figure</dtitle>
+		  		<dtitle>Win/Loss Figure This Week</dtitle>
 		  		<hr>
 	        	<div id="load"></div>
-	        	    <h3 style="color:#60b000">This Week: <span id="thisWeek">{{ThisWeek}}</span></h3>
-                    <h3 style="color:#007137">Last Week: <span id="LastWeek">{{LastWeek}}</span></h3>
+	        	    <h3 style="color:#60b000">This Week: {{ThisWeek}} <span id="thisWeek" hidden="true">{{ThisWeekPercent}}</span></h3>
+
 			</div>
         </div>
 
       <!-- DONUT CHART BLOCK -->
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
-		  		<dtitle>test</dtitle>
+		  		<dtitle>Win/Loss Figure Last Week</dtitle>
 		  		<hr>
 	        	<div id="space"></div>
-	        	<h2>60%</h2>
+				<h3 style="color:#007137">Last Week:{{LastWeek}} <span id="LastWeek" hidden="true">{{LastWeekPercent}}</span></h3>
 			</div>
         </div>
 

@@ -29,8 +29,8 @@
 				name: 'Income',
 				innerSize: '50%',
 				data: [
-					{ name: 'This Week ', y: Math.abs(parseInt(jQuery("#thisWeek").text())), color: '#60b000' },
-					{ name: 'Last Week ', y: Math.abs(parseInt(jQuery("#LastWeek").text())), color: '#007137' }
+					{ name: 'This Week Percent', y: Math.abs(parseInt(jQuery("#thisWeek").text())), color: '#60b000' },
+					{ name: 'Missing for', y: 100, color: '#3d3d3d' }
 				],
 				dataLabels: {
 					enabled: false,
@@ -73,8 +73,8 @@
 				name: 'SiteInfo',
 				innerSize: '50%',
 				data: [
-					{ name: 'Used', y: 40.20, color: '#fa1d2d' },
-					{ name: 'Rest', y: 105.29, color: '#3d3d3d' }
+					{ name: 'Last Week Percent', y: Math.abs(parseInt(jQuery("#LastWeek").text())), color: '#fa1d2d' },
+					{ name: 'Missing for:', y: 100, color: '#3d3d3d' }
 				],
 				dataLabels: {
 					enabled: false,
