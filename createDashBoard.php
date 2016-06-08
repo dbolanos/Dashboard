@@ -6,5 +6,5 @@
  * Time: 2:57 PM
  */
 require_once("class/WebService.php");
-$oWebService=new WebService('92396','usd');
-echo $oWebService->strReplaceIndex();
+echo WebService::strReplaceIndex('92396','usd');
+

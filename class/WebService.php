@@ -9,21 +9,12 @@
 class WebService
 {
 
-    private $prmIdPlayer;
-    private $prmCurrencyCode;
-
-    function __construct($prmIdPlayer, $prmCurrencyCode)
-    {
-        $this->prmCurrencyCode = $prmCurrencyCode;
-        $this->prmIdPlayer = $prmIdPlayer;
-    }
-
-    private function getWebService()
+    private static function getWebService()
     {
         return new SoapClient("http://172.33.0.41:8090/proxyplayer.asmx?WSDL");
     }
 
-    function getElement($xml, $item)
+    private static function getElement($xml, $item)
     {
         foreach ($xml->attributes() as $key => $value) {
             if ($key == $item) {
@@ -32,24 +23,26 @@ class WebService
         }
     }
 
-    function getPlayerBalance()
+    static function getPlayerBalance($prmIdPlayer,$prmCurrencyCode)
     {
-        $params = array('prmIdPlayer' => $this->prmIdPlayer, 'prmCurrencyCode' => $this->prmCurrencyCode);
-        $test = $this->getWebService()->GetPlayerBalance($params);
+        $params = array('prmIdPlayer' => $prmIdPlayer, 'prmCurrencyCode' => $prmCurrencyCode);
+        $test = self::getWebService()->GetPlayerBalance($params);
         $xml = new SimpleXMLElement($test->GetPlayerBalanceResult);
 
         return $xml;
     }
 
 
-    function strReplaceIndex()
+    static function strReplaceIndex($prmIdPlayer,$prmCurrencyCode)
     {
         $template = file_get_contents("Theme/index.html");
-        $result = str_replace("{{currentBalance}}", $this->getElement($this->getPlayerBalance(), 'CurrentBalance'), $template);
-        $result = str_replace("{{availableBalance}}", $this->getElement($this->getPlayerBalance(), 'AvailBalance'), $result);
-        $result = str_replace("{{riskBalance}}", $this->getElement($this->getPlayerBalance(), 'AmountAtRisk'), $result);
-        $result = str_replace("{{ThisWeek}}", $this->getElement($this->getPlayerBalance(), 'ThisWeek'), $result);
-        $result = str_replace("{{LastWeek}}", $this->getElement($this->getPlayerBalance(), 'LastWeek'), $result);
+        $result = str_replace("{{currentBalance}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'CurrentBalance'), $template);
+        $result = str_replace("{{availableBalance}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'AvailBalance'), $result);
+        $result = str_replace("{{riskBalance}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'AmountAtRisk'), $result);
+        $result = str_replace("{{ThisWeek}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'ThisWeek'), $result);
+        $result = str_replace("{{LastWeek}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'LastWeek'), $result);
+        $result = str_replace("{{BonusPoints}}", self::getElement(self::getPlayerBalance($prmIdPlayer,$prmCurrencyCode), 'BonusPoints'), $result);
+
 
         return $result;
     }
